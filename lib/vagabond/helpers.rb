@@ -1,6 +1,7 @@
 require 'vagabond/constants'
 require 'tmpdir'
 require 'uuidtools'
+require 'chef'
 
 module Vagabond
   module Helpers
