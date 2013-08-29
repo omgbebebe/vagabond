@@ -286,8 +286,8 @@ action :create do
 
   file "lxc chef-data-bag-secret[#{new_resource.name}]" do
     path _lxc.rootfs.join('etc/chef/encrypted_data_bag_secret').to_path
-    content(
-      ::File.exists?(new_resource.data_bag_secret_file) ? ::File.open(new_resource.data_bag_secret_file, "rb").read : ''
+    content((not new_resource.data_bag_secret_file.nil? and
+      ::File.exists?(new_resource.data_bag_secret_file)) ? ::File.open(new_resource.data_bag_secret_file, "rb").read : ''
     )
     mode 0600
     only_if do
