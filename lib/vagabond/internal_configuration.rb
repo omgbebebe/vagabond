@@ -254,7 +254,7 @@ node_name 'dummy'
 client_key File.join(File.dirname(__FILE__), 'client.pem')
 validation_client_name 'dummy-validator'
 validation_key File.join(File.dirname(__FILE__), 'validation.pem')
-cookbook_path ['#{%w(cookbooks site-cookbooks).map{|dir|File.join(@vagabondfile.directory, dir)}.join(',')}']
+cookbook_path #{%w(cookbooks site-cookbooks).map{|dir|File.join(@vagabondfile.directory, dir)}.to_s}
 cache_options({ :path => File.join(File.dirname(__FILE__), "checksums"), :skip_expires => true })
 EOF
             end
