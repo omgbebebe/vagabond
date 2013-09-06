@@ -11,6 +11,8 @@ module Vagabond
           com << " --cookbook-path #{Array(options[:cookbook_paths]).join(':')}"
         end
         if(File.exists?(knife_config = File.join(store, '.chef/knife.rb')))
+          # FIX: read cookbooks paths from knife.rb
+          return nil unless ["cookbooks", "site-cookbooks"].map{|d| File.directory?(d)}.any?
           com << " --config #{knife_config}"
         end
         debug(com)
