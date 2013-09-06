@@ -246,6 +246,7 @@ module Vagabond
           store_dir = File.dirname(store_path)
           k_dir = File.join(store_dir, '.chef')
           FileUtils.mkdir_p(k_dir)
+          FileUtils.mkdir_p(File.join(k_dir, 'checksums'))
           unless(File.exists?(knife = File.join(k_dir, 'knife.rb')))
             File.open(knife, 'w') do |file|
               file.write <<-EOF
@@ -254,6 +255,7 @@ client_key File.join(File.dirname(__FILE__), 'client.pem')
 validation_client_name 'dummy-validator'
 validation_key File.join(File.dirname(__FILE__), 'validation.pem')
 cookbook_path ['#{%w(cookbooks site-cookbooks).map{|dir|File.join(@vagabondfile.directory, dir)}.join(',')}']
+cache_options({ :path => File.join(File.dirname(__FILE__), "checksums"), :skip_expires => true })
 EOF
             end
           end
