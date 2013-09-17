@@ -51,7 +51,7 @@ module Vagabond
             :zero => false,
             :berkshelf => false,
             :librarian => false,
-            :enabled => false,
+            :enabled => true,
             :auto_upload => true
           },
           :sudo => true
